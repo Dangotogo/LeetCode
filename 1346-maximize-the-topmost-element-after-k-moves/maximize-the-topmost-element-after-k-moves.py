@@ -1,0 +1,21 @@
+class Solution(object):
+    def maximumTop(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        n = len(nums)
+        if n == 1:
+            return -1 if k % 2 == 1 else nums[0]
+        if k == 0:
+            return nums[0]
+        if k == 1:
+            return nums[1] if n > 1 else -1
+        if k > n:
+            return max(nums)
+        
+        max_before_k = max(nums[:k-1])  
+        if k < n:
+            return max(max_before_k, nums[k])
+        return max_before_k
